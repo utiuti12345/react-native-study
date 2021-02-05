@@ -4,8 +4,18 @@ import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {createDrawerNavigator} from "@react-navigation/drawer";
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 import * as UiContext from "../../contexts/ui";
-import {CHOOSE_LOGIN, HOME, INITIAL, LOADING, STATISTICS, USER_INFO} from "../../constants/path";
-import {ChooseLogin, Initial, Loading, UserInfo} from "../../components/pages";
+import {
+    CHOOSE_LOGIN,
+    HOME,
+    INITIAL,
+    INPUT,
+    LOADING,
+    SIGN_IN,
+    SIGN_UP,
+    STATISTICS,
+    USER_INFO
+} from "../../constants/path";
+import {ChooseLogin, Initial, Input, Loading, SignIn, SignUp, UserInfo} from "../../components/pages";
 import Home from './Home';
 import Statistics from './Statistics';
 
@@ -13,22 +23,13 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const HomeDrawer = createDrawerNavigator();
 const StatisticsDrawer = createDrawerNavigator();
+const ModalStack = createStackNavigator();
+const ChooseLoginStack = createStackNavigator();
 const forFade = ({current}: StackCardInterpolationProps) => ({
     cardStyle: {
         opacity: current.progress,
     }
 });
-
-const getActiveRouteName = (state: any): string => {
-    if (!state || !state.routes) {
-        return '';
-    }
-    const route = state.routes[state.index];
-    if (route.state) {
-        return getActiveRouteName(route.state);
-    }
-    return route.name;
-};
 
 function HomeWithDrawer() {
     return (
@@ -62,12 +63,31 @@ function TabRoutes() {
     )
 }
 
+function TabWithModalRoutes(){
+    return(
+        <ModalStack.Navigator mode="modal" headerMode="none">
+            <Tab.Screen name={HOME} component={TabRoutes}/>
+            <Tab.Screen name={INPUT} component={Input}/>
+        </ModalStack.Navigator>
+    )
+}
+
+function ChooseLoginStackNavigator() {
+    return(
+        <ChooseLoginStack.Navigator initialRouteName={CHOOSE_LOGIN}>
+            <ChooseLoginStack.Screen name={CHOOSE_LOGIN} component={ChooseLogin}/>
+            <ChooseLoginStack.Screen name={SIGN_IN} component={SignIn}/>
+            <ChooseLoginStack.Screen name={SIGN_UP} component={SignUp}/>
+        </ChooseLoginStack.Navigator>
+    )
+}
+
 function switchingAuthStatus(status: UiContext.Status) {
     switch (status) {
         case UiContext.Status.UN_AUTHORIZED:
-            return <Stack.Screen name={CHOOSE_LOGIN} component={ChooseLogin}/>;
+            return <Stack.Screen name={CHOOSE_LOGIN} component={ChooseLoginStackNavigator}/>;
         case UiContext.Status.AUTHORIZED:
-            return <Stack.Screen name={HOME} component={TabRoutes}/>;
+            return <Stack.Screen name={HOME} component={TabWithModalRoutes}/>;
         default:
             return <Stack.Screen name={INITIAL} component={Initial}/>
     }
