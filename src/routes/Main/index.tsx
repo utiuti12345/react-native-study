@@ -18,6 +18,8 @@ import {
 import {ChooseLogin, Initial, Input, Loading, SignIn, SignUp, UserInfo} from "../../components/pages";
 import Home from './Home';
 import Statistics from './Statistics';
+import {COLOR} from "../../constants/theme";
+import {headerStyle, headerTintColor} from "../Header";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -31,9 +33,21 @@ const forFade = ({current}: StackCardInterpolationProps) => ({
     }
 });
 
+const cardStyle = {
+    backgroundColor: COLOR.MAIN,
+};
+const drawerStyle = {
+    backgroundColor: COLOR.MAIN,
+};
+const drawerContentOptions = {
+    backgroundColor: COLOR.PRIMARY,
+    inactiveTintColor: COLOR.WHITE,
+};
+
 function HomeWithDrawer() {
     return (
-        <HomeDrawer.Navigator initialRouteName={HOME}>
+        <HomeDrawer.Navigator initialRouteName={HOME} drawerStyle={drawerStyle}
+                              drawerContentOptions={drawerContentOptions}>
             <HomeDrawer.Screen name={HOME} component={Home}/>
             <HomeDrawer.Screen name={USER_INFO} component={UserInfo}/>
         </HomeDrawer.Navigator>
@@ -42,7 +56,8 @@ function HomeWithDrawer() {
 
 function StatisticsWithDrawer() {
     return (
-        <StatisticsDrawer.Navigator initialRouteName={STATISTICS}>
+        <StatisticsDrawer.Navigator initialRouteName={STATISTICS} drawerStyle={drawerStyle}
+                                    drawerContentOptions={drawerContentOptions}>
             <StatisticsDrawer.Screen name={STATISTICS} component={Statistics}/>
             <StatisticsDrawer.Screen name={USER_INFO} component={UserInfo}/>
         </StatisticsDrawer.Navigator>
@@ -51,21 +66,29 @@ function StatisticsWithDrawer() {
 
 function TabRoutes() {
     return (
-        <Tab.Navigator initialRouteName={HOME} screenOptions={(props: any) => {
-            const routeName = getFocusedRouteNameFromRoute(props.route);
-            return {
-                tabBarVisible: routeName !== USER_INFO
-            }
-        }}>
+        <Tab.Navigator initialRouteName={HOME}
+                       tabBarOptions={{
+                           inactiveTintColor: COLOR.WHITE,
+                           activeTintColor:COLOR.PRIMARY,
+                           style:{
+                               backgroundColor:COLOR.MAIN,
+                           },
+                       }}
+                       screenOptions={(props: any) => {
+                           const routeName = getFocusedRouteNameFromRoute(props.route);
+                           return {
+                               tabBarVisible: routeName !== USER_INFO
+                           }
+                       }}>
             <Tab.Screen name={HOME} component={HomeWithDrawer}/>
             <Tab.Screen name={STATISTICS} component={StatisticsWithDrawer}/>
         </Tab.Navigator>
     )
 }
 
-function TabWithModalRoutes(){
-    return(
-        <ModalStack.Navigator mode="modal" headerMode="none">
+function TabWithModalRoutes() {
+    return (
+        <ModalStack.Navigator mode="modal" headerMode="none" screenOptions={{cardStyle}}>
             <Tab.Screen name={HOME} component={TabRoutes}/>
             <Tab.Screen name={INPUT} component={Input}/>
         </ModalStack.Navigator>
@@ -73,8 +96,9 @@ function TabWithModalRoutes(){
 }
 
 function ChooseLoginStackNavigator() {
-    return(
-        <ChooseLoginStack.Navigator initialRouteName={CHOOSE_LOGIN}>
+    return (
+        <ChooseLoginStack.Navigator initialRouteName={CHOOSE_LOGIN}
+                                    screenOptions={{cardStyle, headerStyle, headerTintColor}}>
             <ChooseLoginStack.Screen name={CHOOSE_LOGIN} component={ChooseLogin}/>
             <ChooseLoginStack.Screen name={SIGN_IN} component={SignIn}/>
             <ChooseLoginStack.Screen name={SIGN_UP} component={SignUp}/>
