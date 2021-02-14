@@ -38,8 +38,6 @@ export default function ChooseLogin() {
             </View>
             <View style={styles.contentContainer}>
                 <Button onPress={() => navigate(SIGN_IN)} style={styles.button} label="Sign in"/>
-            </View>
-            <View style={styles.contentContainer}>
                 <Button onPress={() => navigate(SIGN_UP)} style={styles.button} label="Sign up"/>
             </View>
         </View>
