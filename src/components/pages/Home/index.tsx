@@ -65,7 +65,7 @@ export default function Home() {
     return (
         <View style={styles.container}>
             <Todos isEditable todos={todos} actions={{...actions,gotoDetail}}/>
-            <TouchableOpacity onPress={onPress}>
+            <TouchableOpacity onPress={onPress} style={styles.button}>
                 <Icon color={COLOR.PRIMARY} size={24} name="plus"/>
             </TouchableOpacity>
         </View>
