@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         height: 120,
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: 20,
     },
