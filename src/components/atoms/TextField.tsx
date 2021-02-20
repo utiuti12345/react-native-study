@@ -31,7 +31,7 @@ const theme = {
     colors: {
         primary: COLOR.PRIMARY,
         backgroundColor: COLOR.MAIN,
-        text: COLOR.WHITE,
+        text: COLOR.BLACK,
         placeholder: COLOR.PRIMARY,
     }
 };
