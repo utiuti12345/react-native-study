@@ -12,8 +12,20 @@ const Stack = createStackNavigator();
 
 function UserInfoNavigator() {
     return(
-        <Stack.Navigator initialRouteName={USER_INFO} screenOptions={{cardStyle, headerStyle, headerTintColor}}>
-            <Stack.Screen name={USER_INFO} component={UserInfo} options={{headerLeft: () => <HeaderLeft/>}}/>
+        <Stack.Navigator
+            initialRouteName={USER_INFO}
+            screenOptions={{
+                cardStyle,
+                headerStyle,
+                headerTintColor
+            }}>
+            <Stack.Screen
+                name={USER_INFO}
+                component={UserInfo}
+                options={{
+                    headerLeft: () => <HeaderLeft/>,
+                    title:'User Info',
+                }}/>
         </Stack.Navigator>
     )
 }

@@ -64,6 +64,20 @@ function StatisticsWithDrawer() {
     )
 }
 
+const getActiveRouteName = (state: any): string => {
+    if (!state || !state.routes) {
+        return '';
+    }
+    const route = state.routes[state.index];
+
+    if (route.state) {
+        // Dive into nested navigators
+        return getActiveRouteName(route.state);
+    }
+
+    return route.name;
+};
+
 function TabRoutes() {
     return (
         <Tab.Navigator initialRouteName={HOME}
@@ -75,7 +89,7 @@ function TabRoutes() {
                            },
                        }}
                        screenOptions={(props: any) => {
-                           const routeName = getFocusedRouteNameFromRoute(props.route);
+                           const routeName = getActiveRouteName(props.route.state);
                            return {
                                tabBarVisible: routeName !== USER_INFO
                            }
