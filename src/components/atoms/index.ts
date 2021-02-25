@@ -5,3 +5,5 @@ export {default as TextField,dismiss} from './TextField';
 export {default as Pagination} from './Pagenation';
 export {default as Avatar} from './Avatar';
 export {default as LabelValueContainer} from './LabelValueContainer';
+export {default as HeaderText} from './HeaderText';
+export {default as Progress} from './Progress';
