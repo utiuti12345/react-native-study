@@ -1,4 +1,7 @@
-interface Model {
+import {v4 as generatedUuid} from 'react-native-uuid';
+import {assertIsDefined} from '../../lib/assert';
+
+export interface Model {
     readonly id: string;
     readonly title: string;
     readonly detail?: string;
@@ -6,10 +9,6 @@ interface Model {
     readonly updateAt: string;
     readonly completedAt: string | null;
 }
-
-import {v4 as generatedUuid} from 'react-native-uuid';
-
-import {assertIsDefined} from '../../lib/assert';
 
 export interface Values {
     readonly title: string;
