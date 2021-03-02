@@ -30,12 +30,12 @@ export function add(todo:Todo.Model) {
     }
 }
 
-export function update(id:string,todo:Todo.Model) {
+export function update(id:string,todoValues:Todo.Values) {
     return{
         type:UPDATE,
         payload:{
             id,
-            todo,
+            todoValues,
         }
     }
 }
@@ -55,5 +55,29 @@ export function toggle(id:string) {
         payload:{
             id,
         }
+    }
+}
+
+export type Action = | Readonly<ReturnType<typeof set>>
+    | Readonly<ReturnType<typeof set>>
+    | Readonly<ReturnType<typeof add>>
+    | Readonly<ReturnType<typeof update>>
+    | Readonly<ReturnType<typeof remove>>
+    | Readonly<ReturnType<typeof toggle>>
+
+export default function reducer(state = createInitialState(),action:Action) {
+    switch (action.type) {
+        case SET:
+            return action.payload.todos;
+        case ADD:
+            return Todos.add(state,action.payload.todo);
+        case UPDATE:
+            return Todos.update(state,action.payload.id,action.payload.todoValues);
+        case REMOVE:
+            return Todos.remove(state,action.payload.id);
+        case TOGGLE:
+            return Todos.toggle(state,action.payload.id);
+        default:
+            return state;
     }
 }
