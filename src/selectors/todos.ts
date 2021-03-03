@@ -2,6 +2,7 @@ import {Appstate} from "../modules";
 import {createSelector} from "reselect";
 
 import * as Domain from "../domain/models";
+import round from "../lib/round";
 
 function selectTodos(state:Appstate) {
     return state.todos;
@@ -20,3 +21,25 @@ export const getArray = createSelector([selectTodos],todos =>
 
 export const getTodos = createSelector([getArray],todos =>
     todos.sort((a,b) => b.createdAt - a.createdAt));
+
+export const getCompletedAll = createSelector([getArray],todos => todos.filter(todo => todo.isDone));
+
+export const getNumofCompleted = createSelector([getCompletedAll],todos => todos.length);
+
+export const getStatistics = createSelector([getArray,getNumofCompleted],(todos,numofCompleted) => {
+    const numofAll = todos.length;
+    const numofUncompleted = numofAll - numofCompleted;
+    const completedRatio = round(numofCompleted / numofAll,3);
+    const uncompletedRatio = round(1 - completedRatio,3);
+
+    return {
+        numofAll,
+        numofCompleted,
+        numofUncompleted,
+        completedRatio,
+        uncompletedRatio,
+    }
+});
+
+export const getHistories = createSelector([getCompletedAll],todos =>
+    todos.sort((a,b) => b.updateAt - a.updateAt));
