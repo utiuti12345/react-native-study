@@ -46,11 +46,13 @@ export default function Input() {
     return (
         <SafeAreaView style={styles.container}>
             <TouchableWithoutFeedback onPress={dismiss}>
-                <IconButton icon="close" onPress={back} style={styles.iconButton}
-                            size={30} iconColor={COLOR.PRIMARY}/>
-                <TextField label="Title" value={title.value} onChangeText={title.onChangeText} style={styles.text}/>
-                <TextField label="Detail" value={detail.value} onChangeText={detail.onChangeText} style={styles.text}/>
-                <Button onPress={addTodo} label="Add" style={styles.button} disabled={!title.value}/>
+                <View style={styles.container}>
+                    <IconButton icon="close" onPress={back} style={styles.iconButton}
+                                size={30} iconColor={COLOR.PRIMARY}/>
+                    <TextField label="Title" value={title.value} onChangeText={title.onChangeText} style={styles.text}/>
+                    <TextField label="Detail" value={detail.value} onChangeText={detail.onChangeText} style={styles.text}/>
+                    <Button onPress={addTodo} label="Add" style={styles.button} disabled={!title.value}/>
+                </View>
             </TouchableWithoutFeedback>
         </SafeAreaView>
     )
