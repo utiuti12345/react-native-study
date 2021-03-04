@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 interface Props {
     onPress: () => void;
     title: string;
-    detail: string;
+    detail?: string;
     isDone: boolean | undefined;
 }
 

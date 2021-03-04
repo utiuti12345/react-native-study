@@ -13,7 +13,7 @@ export interface GotoDetail {
 export interface State {
     id:string;
     title:string;
-    detail:string;
+    detail?:string;
     isDone?:boolean;
 }
 
