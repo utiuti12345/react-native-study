@@ -15,9 +15,10 @@ import {
     STATISTICS,
     USER_INFO
 } from "../../constants/path";
-import {ChooseLogin, Initial, Input, Loading, SignIn, SignUp, UserInfo} from "../../components/pages";
+import {ChooseLogin, Initial, Input, SignUp, UserInfo} from "../../components/pages";
 import Home from './Home';
 import Statistics from './Statistics';
+import { Loading,SignIn } from "../../containers";
 import {COLOR} from "../../constants/theme";
 import {headerStyle, headerTintColor} from "../Header";
 

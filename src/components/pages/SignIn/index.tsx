@@ -1,8 +1,13 @@
 import React from "react";
-import {StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View} from "react-native";
-import {Context, Status} from "../../../contexts/ui";
-import {useControlledComponent} from "../../../lib/hooks";
+import {StyleSheet, TouchableWithoutFeedback, View} from "react-native";
+import {Status} from "../../../contexts/ui";
+import {UiContext, UserContext} from "../../../contexts";
+import {Todos} from "../../../domain/models";
+import {useControlledComponent, useNetworker} from "../../../lib/hooks";
 import {Button, dismiss, TextField} from "../../atoms";
+import * as TodosRepostory from "../../../domain/repositories/todos";
+import * as LocalStore from "../../../lib/local-store";
+import signInWithPasswordToFirebase from "../../../lib/firebase/sign-in-with-password";
 import SignInWithGoogle from "./SignInWithGoogle";
 
 const styles = StyleSheet.create({
@@ -27,10 +32,31 @@ const styles = StyleSheet.create({
     },
 });
 
-export default function SignIn() {
-    const {setApplicationState} = React.useContext(Context);
+interface Props {
+    actions: {
+        setTodos: (todos: Todos.Model) => void;
+    };
+}
+
+export default function SignIn(props:Props) {
+    const {setUserState} = React.useContext(UserContext);
+    const {setApplicationState} = React.useContext(UiContext);
+    const networker = useNetworker();
     const mailAddress = useControlledComponent('');
     const password = useControlledComponent('');
+    const {setTodos} = props.actions;
+
+    const signInWithPassword = React.useCallback(async () => {
+       await networker(async () => {
+          const userInformation = await signInWithPasswordToFirebase(mailAddress.value,password.value);
+          setUserState(userInformation);
+          setApplicationState(Status.AUTHORIZED);
+          await LocalStore.UserInformation.save(userInformation);
+
+          const todos = await TodosRepostory.getAll(userInformation.id);
+          setTodos(todos);
+       });
+    },[mailAddress.value,password.value,setApplicationState,networker,setUserState,setTodos]);
 
     return(
         <TouchableWithoutFeedback onPress={dismiss}>
@@ -53,11 +79,11 @@ export default function SignIn() {
                     />
                 </View>
                 <View style={styles.buttonContainer}>
-                    <SignInWithGoogle/>
+                    <SignInWithGoogle {...props}/>
                     <Button
-                        onPress={() => setApplicationState(Status.AUTHORIZED)}
+                        onPress={signInWithPassword}
                         style={styles.button}
-                        label="Register"
+                        label="SignIn"
                     />
                 </View>
             </View>
