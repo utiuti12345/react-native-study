@@ -1,7 +1,7 @@
-import {firestore} from "firebase";
+import firebase from "./firebase";
 
 export default function getFirestore(uid:string) {
-    return firestore()
+    return firebase.firestore()
         .collection('users')
         .doc(uid)
         .collection('todos');

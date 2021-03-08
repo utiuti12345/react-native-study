@@ -1,7 +1,7 @@
-import auth from "@react-native-firebase/auth";
+import firebase from "./firebase";
 
 export default async function registerUser(mailAddress:string,password:string) {
-    const response = await auth().createUserWithEmailAndPassword(mailAddress,password);
+    const response = await firebase.auth().createUserWithEmailAndPassword(mailAddress,password);
 
     if (!response.user){
         throw new Error("user information is null");

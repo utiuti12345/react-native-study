@@ -1,4 +1,4 @@
-import auth from "@react-native-firebase/auth";
+import firebase from "./firebase";
 import {GoogleSignin} from "@react-native-community/google-signin"
 
 GoogleSignin.configure({
@@ -10,9 +10,9 @@ export default async function signInWithGoogle() {
     const user = await GoogleSignin.signIn();
     const {idToken} = user;
     const {accessToken} = await GoogleSignin.getTokens();
-    const credential = auth.GoogleAuthProvider.credential(idToken,accessToken);
+    const credential = firebase.auth.GoogleAuthProvider.credential(idToken,accessToken);
 
-    const response = await auth().signInWithCredential(credential);
+    const response = await firebase.auth().signInWithCredential(credential);
 
     if(!response.user){
         throw new Error("user information is null");
