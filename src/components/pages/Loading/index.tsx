@@ -1,11 +1,11 @@
 import React from "react";
-import firebase from "../../../firebase";
+import firebase from "../../../lib/firebase/firebase";
 import {ActivityIndicator, StyleSheet, View} from "react-native";
 import {Context as UserContext} from '../../../contexts/user';
 import {Context as UiContext, Status} from '../../../contexts/ui';
 
 import {Todos} from "../../../domain/models";
-import * as TodosRepository from "../../../domain/"
+import * as TodosRepository from "../../../domain/repositories/todos";
 import * as LocalStore from "../../../lib/local-store/index";
 
 
@@ -47,7 +47,7 @@ function useUserInformation(setTodos:SetTodo) {
                   setApplicationState(Status.UN_AUTHORIZED);
                   return;
               }
-              TodosRepository.getAll(use.uid)
+              TodosRepository.getAll(user.uid)
                   .then(todos => {
                       setTodos(todos);
                       setApplicationState(Status.AUTHORIZED);

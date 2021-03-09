@@ -2873,10 +2873,6 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@react-native-community/async-storage@https://github.com/januswel/async-storage.git":
-  version "1.6.3"
-  resolved "https://github.com/januswel/async-storage.git#6142db6a6374a81816cb977f22ee21438a2d6449"
-
 "@react-native-community/cli-debugger-ui@^4.13.1":
   version "4.13.1"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-4.13.1.tgz#07de6d4dab80ec49231de1f1fbf658b4ad39b32c"
@@ -5169,6 +5165,13 @@ expo-font@~8.4.0:
   dependencies:
     fbjs "1.0.0"
     fontfaceobserver "^2.1.0"
+
+expo-google-sign-in@~8.4.0:
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/expo-google-sign-in/-/expo-google-sign-in-8.4.0.tgz#bceca538840c68fc4775004432e27c5bff73f897"
+  integrity sha512-7kf0Nsy+WSizJPIUUQIGK6qiKbpLRjm3YKrqREeGpYiebOyi51lWw78CM6ylcb+FN2vb9d/kTEzinAfTgsPQ7w==
+  dependencies:
+    invariant "^2.2.4"
 
 expo-keep-awake@~8.4.0:
   version "8.4.0"
