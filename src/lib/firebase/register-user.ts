@@ -19,6 +19,7 @@ export default async function registerUser(mailAddress:string,password:string) {
     return {
         id,
         name,
+        mailAddress,
         photoUrl,
         createdAt,
         lastLoginAt

@@ -15,5 +15,3 @@ web-build/
 /.idea/
 
 .env
-.env.development
-.env.production
