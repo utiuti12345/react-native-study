@@ -16,6 +16,6 @@ export function createInitialState():UserInformation {
 }
 
 export const Context = React.createContext({
-   useState:createInitialState(),
+   userState:createInitialState(),
    setUserState:(_:UserInformation) => {},
 });

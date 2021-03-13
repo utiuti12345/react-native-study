@@ -1,10 +1,10 @@
-import {Appstate} from "../modules";
+import {AppState} from "../modules";
 import {createSelector} from "reselect";
 
 import * as Domain from "../domain/models";
 import round from "../lib/round";
 
-function selectTodos(state:Appstate) {
+function selectTodos(state:AppState) {
     return state.todos;
 }
 

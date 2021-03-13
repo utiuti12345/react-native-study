@@ -8,8 +8,8 @@ export function createInitialState() {
     };
 }
 
-export type Appstate = Readonly<ReturnType<typeof createInitialState>>;
+export type AppState = Readonly<ReturnType<typeof createInitialState>>;
 
-export default combineReducers<Appstate>({
+export default combineReducers<AppState>({
    todos: Todos.default,
 });

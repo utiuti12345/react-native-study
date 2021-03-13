@@ -4,6 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import {COLOR} from "../../../constants/theme";
 import {useControlledComponent} from "../../../lib/hooks";
 import {Button, dismiss, IconButton, TextField} from "../../atoms";
+import {Todo} from "../../../domain/models";
 
 const styles = StyleSheet.create({
     container: {
@@ -28,7 +29,13 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function Input() {
+interface Props {
+    actions: {
+        addTodo: (newValues: Todo.Values) => void;
+    };
+}
+
+export default function Input(props:Props) {
     const title = useControlledComponent('');
     const detail = useControlledComponent('');
 
@@ -38,10 +45,15 @@ export default function Input() {
     }, [goBack]);
 
     const addTodo = useCallback(() => {
+        props.actions.addTodo({
+            title:title.value,
+            detail:detail.value,
+        });
+
         back();
         title.onChangeText('');
         detail.onChangeText('');
-    }, [back, title, detail]);
+    }, [back, title, detail,props.actions]);
 
     return (
         <SafeAreaView style={styles.container}>

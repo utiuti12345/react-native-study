@@ -15,7 +15,7 @@ export default function App() {
     const [applicationState,setApplicationState] = React.useState(UiContext.createApplicationInitialState());
     const [error,setError] = React.useState(UiContext.createErrorInitialState());
     const [snackbar,setSnackbar] = React.useState(UiContext.createSnackbarInitialState());
-    const [useState,setUserState] = React.useState(UserContext.createInitialState());
+    const [userState,setUserState] = React.useState(UserContext.createInitialState());
 
     const [networkState,dispatchNetworkActions] = React.useReducer(
         NetworkContext.reducer,
@@ -32,7 +32,7 @@ export default function App() {
             <SafeAreaProvider>
                 <UiContext.Context.Provider value={{error,setError,snackbar,setSnackbar,applicationState,setApplicationState}}>
                     <NetworkContext.Context.Provider value={{networkState,dispatchNetworkActions}}>
-                        <UserContext.Context.Provider value={{useState,setUserState}}>
+                        <UserContext.Context.Provider value={{userState,setUserState}}>
                             <Routes/>
                             <NetworkPanel/>
                             <ErrorPanel/>

@@ -15,10 +15,10 @@ import {
     STATISTICS,
     USER_INFO
 } from "../../constants/path";
-import {ChooseLogin, Initial, Input, SignUp, UserInfo} from "../../components/pages";
+import {ChooseLogin, Initial, UserInfo} from "../../components/pages";
 import Home from './Home';
 import Statistics from './Statistics';
-import { Loading,SignIn } from "../../containers";
+import {Loading, SignIn, SignUp,Input} from "../../containers";
 import {COLOR} from "../../constants/theme";
 import {headerStyle, headerTintColor} from "../Header";
 
@@ -84,9 +84,9 @@ function TabRoutes() {
         <Tab.Navigator initialRouteName={HOME}
                        tabBarOptions={{
                            inactiveTintColor: COLOR.WHITE,
-                           activeTintColor:COLOR.PRIMARY,
-                           style:{
-                               backgroundColor:COLOR.MAIN,
+                           activeTintColor: COLOR.PRIMARY,
+                           style: {
+                               backgroundColor: COLOR.MAIN,
                            },
                        }}
                        screenOptions={(props: any) => {

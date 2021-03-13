@@ -1,5 +1,6 @@
-import firebase from 'firebase';
-import '@firebase/firestore'
+import * as firebase from 'firebase';
+import '@firebase/firestore';
+//import '@firebase/analytics';
 
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
@@ -7,6 +8,7 @@ const firebaseConfig = {
     databaseURL: process.env.FIREBASE_DATABASE_URL,
     projectId: process.env.FIREBASE_PROJECT_ID,
     storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    appid: process.env.FIREBASE_APP_ID,
     messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
 };
 
@@ -17,4 +19,3 @@ try {
 }
 
 export default firebase;
-
