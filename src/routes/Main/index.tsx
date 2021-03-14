@@ -90,7 +90,8 @@ function TabRoutes() {
                            },
                        }}
                        screenOptions={(props: any) => {
-                           const routeName = getActiveRouteName(props.route.state);
+                           //const routeName = getActiveRouteName(props.route.state);
+                           const routeName = getFocusedRouteNameFromRoute(props.route);
                            return {
                                tabBarVisible: routeName !== USER_INFO
                            }

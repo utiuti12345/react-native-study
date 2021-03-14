@@ -4,6 +4,8 @@ import {useRoute, RouteProp} from "@react-navigation/native";
 import {useNavigation} from "@react-navigation/native";
 import {useControlledComponent} from "../../../lib/hooks";
 import {Button, TextField} from "../../atoms";
+import {useContext} from "react";
+import {UserContext} from "../../../contexts";
 
 const styles = StyleSheet.create({
     container: {
@@ -33,7 +35,7 @@ interface Params {
     detail: string;
 }
 
-export default function Detail() {
+export default function Detail(props:Props) {
     const {goBack} = useNavigation();
     const {params} = useRoute<RouteProp<Record<string, Params>, string>>();
     const {isEditable,title:titleInitialValue,detail:detailInitialValue} = params;
@@ -42,8 +44,10 @@ export default function Detail() {
     const detail = useControlledComponent(detailInitialValue);
 
     const onSubmit = React.useCallback(() =>{
+        props.actions.changeTodo(params.id,
+            {title:title.value,detail:detail.value});
         goBack();
-    },[goBack]);
+    },[title.value,detail.value,goBack]);
 
     return (
         <View style={styles.container}>

@@ -7,10 +7,10 @@ import {SignIn} from "../components/pages";
 export default function ConnectedSignIn() {
     const dispatch = useDispatch();
     const actions = React.useMemo(() => ({
-        setTodos(newValues:Todos.Model){
-            dispatch(set(newValues));
-        },
-        }),[dispatch]
+            setTodos(newValues: Todos.Model) {
+                dispatch(set(newValues));
+            },
+        }), [dispatch]
     );
 
     return <SignIn actions={actions}/>
