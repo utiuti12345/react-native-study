@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         minWidth:100,
     },
     labelText:{
-        color:COLOR.WHITE,
+        color:COLOR.BLACK,
         fontSize:18,
     },
     valueContainer:{
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         paddingLeft:10,
     },
     valueText:{
-        color:COLOR.WHITE,
+        color:COLOR.BLACK,
         fontSize:16,
     }
 });
