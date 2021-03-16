@@ -1,8 +1,7 @@
 import React from "react";
 import {createStackNavigator} from "@react-navigation/stack";
 import {DETAIL, STATISTICS} from "../../constants/path";
-import {Statistics} from "../../components/pages";
-import {Detail} from '../../containers';
+import {Detail,Statistics} from '../../containers';
 import {HeaderLeft, headerStyle, headerTintColor} from "../Header";
 import {COLOR} from "../../constants/theme";
 
