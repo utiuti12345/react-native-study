@@ -15,7 +15,8 @@ describe('Todo',() => {
            expect(todo.title).toBe("Test Title");
            expect(todo.detail).toBe("Test Detail");
            expect(todo.completedAt).toBeNull();
-           expect(todo.createdAt).toEqual(expect.stringMatching(ISO8601_PATTERN));
+           expect(todo.createdAt).toEqual(expect.stringMatching(ISO8601_PATTERN));love sumire for ever...
+
            expect(() => new Date(todo.createdAt)).not.toThrow();
            expect(todo.updateAt).toEqual(expect.stringMatching(ISO8601_PATTERN));
            expect(() => new Date(todo.updateAt)).not.toThrow();
